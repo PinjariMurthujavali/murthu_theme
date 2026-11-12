@@ -511,7 +511,7 @@ img.mtx-logo {
   filter: brightness(1.15) saturate(1.3) !important;
 }
 .mtx-header { height: var(--mtx-h) !important; min-height: var(--mtx-h) !important; align-items: center !important; overflow: visible !important; }
-.mtx-header .mtx-logo-wrap { width: auto !important; max-width: none !important; flex: none !important; overflow: visible !important; }
+.navbar .mtx-logo-wrap, header .mtx-logo-wrap { width: auto !important; max-width: none !important; flex: none !important; overflow: visible !important; }
 
 /* search bar */
 .mtx-header .search-bar, .mtx-header .search-bar .awesomplete, .mtx-header .search-bar input {
@@ -531,3 +531,26 @@ img.mtx-logo {
 @media (max-width: 479px)  { :root { --mtx-logo-w: 110px; --mtx-logo-h: 34px; --mtx-h: 52px; --mtx-search-w: 100px; } }
 @media (max-height: 500px) and (orientation: landscape) { :root { --mtx-h: 52px; --mtx-logo-h: 34px; --mtx-logo-w: 120px; } }
 /* ===== END MTX RESPONSIVE ===== */
+
+/* ===== MTX MOBILE SIDEBAR: sidebar must open above header ===== */
+@media (max-width: 991px) {
+  .mtx-header { position: relative; z-index: 1030 !important; }
+  .body-sidebar-container, .body-sidebar, .desk-sidebar, .layout-side-section {
+    z-index: 1045 !important;
+    max-width: 85vw !important;
+    overflow-y: auto !important;
+  }
+  .body-sidebar-container.expanded, .body-sidebar-container.opened,
+  .layout-side-section.opened, .layout-side-section.show {
+    display: block !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .sidebar-toggle-btn, .sidebar-toggle-placeholder, .navbar .navbar-toggler {
+    display: inline-flex !important;
+    position: relative;
+    z-index: 1050 !important;
+    pointer-events: auto !important;
+  }
+}
+/* ===== END MTX MOBILE SIDEBAR ===== */
