@@ -4,3 +4,5 @@ __pycache__/
 *.bak*
 .env
 .venv/
+node_modules/
+*.pyc
