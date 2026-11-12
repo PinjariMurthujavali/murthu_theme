@@ -22,6 +22,28 @@
 
   const rnd = (a, b) => a + Math.random() * (b - a);
 
+  /* ===== Welcome only at LOGIN time (once per login session) ===== */
+  const WELCOME_KEY = "mt_welcomed";
+  const LOAD_TIME = Date.now();
+  const WELCOME_WINDOW = 15000; // login tarvata first 15 sec lo desk vachinappudu matrame
+
+  function safeGet() { try { return sessionStorage.getItem(WELCOME_KEY); } catch (e) { return "1"; } }
+  function safeSet() { try { sessionStorage.setItem(WELCOME_KEY, "1"); } catch (e) {} }
+  function safeClear() { try { sessionStorage.removeItem(WELCOME_KEY); } catch (e) {} }
+
+  // login page lo unte flag clear (next login ki welcome ravali)
+  if (/\/login/.test(location.pathname)) safeClear();
+
+  // logout click chesinappudu flag clear
+  addEventListener("click", function (e) {
+    var t = e.target && e.target.closest && e.target.closest("[onclick*='logout'], a[href*='logout']");
+    if (t) safeClear();
+  }, true);
+
+  // ee page load lo welcome pending aa? (flag lekapote = fresh login)
+  let welcomePending = !safeGet();
+  if (welcomePending) safeSet(); // refresh chesthe malli radu
+
   // floating ambient stars
   const stars = Array.from({ length: 80 }, () => ({
     x: rnd(0, innerWidth), y: rnd(0, innerHeight), r: rnd(.6, 2.4),
@@ -64,7 +86,17 @@
     requestAnimationFrame(loop);
     const active = isDesktop();
     document.body.classList.toggle("mt-desk", active);
-    if (active && !wasActive) celebrate();
+
+    // welcome + confetti: login time lo matrame, okkasari
+    if (welcomePending) {
+      if (Date.now() - LOAD_TIME > WELCOME_WINDOW) {
+        welcomePending = false; // login tarvata desk raledu -> skip
+      } else if (active && !wasActive) {
+        welcomePending = false;
+        celebrate();
+      }
+    }
+
     wasActive = active;
     if (!active) { ctx && ctx.clearRect(0, 0, W, H); return; }
 
