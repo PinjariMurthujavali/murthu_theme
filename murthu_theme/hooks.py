@@ -15,7 +15,7 @@ app_license = "mit"
 # 	{
 # 		"name": "murthu_theme",
 # 		"logo": "/assets/murthu_theme/logo.png",
-# 		"title": "Murthu Theme",
+# 		"title": "Brilliant Theme",
 # 		"route": "/murthu_theme",
 # 		"has_permission": "murthu_theme.api.permission.has_app_permission"
 # 	}

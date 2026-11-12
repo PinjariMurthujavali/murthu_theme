@@ -1,4 +1,4 @@
-/* Murthu Theme v4: 10 themes, floating ERP icons, bell fix, module colors, field colors, celebrations */
+/* Brilliant Theme v4: 10 themes, floating ERP icons, bell fix, module colors, field colors, celebrations */
 (function () {
   if (window.__mtFx) return;
   window.__mtFx = true;

@@ -1,4 +1,4 @@
-/* Murthu Theme v4 CSS */
+/* Brilliant Theme v4 CSS */
 :root {
   --mt-a: #7c5cff; --mt-b: #22d3ee; --mt-ink: #1b1f3b;
   --mt-bg1: #0b1026; --mt-bg2: #1a1446; --mt-bg3: #0e3b57;
@@ -236,7 +236,7 @@ body.mt-login .page-card, body.mt-login .login-content { border-radius: 18px; bo
 }
 
 /* ==========================================================
-   Murthu Theme - Module Polish (sidebar, page head, list view)
+   Brilliant Theme - Module Polish (sidebar, page head, list view)
    ========================================================== */
 :root {
   --mp-a1: var(--mt-accent, #6366f1);

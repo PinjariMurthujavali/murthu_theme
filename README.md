@@ -1,4 +1,4 @@
-### Murthu Theme
+### Brilliant Theme
 
 Murthu Desktop Theme
 
