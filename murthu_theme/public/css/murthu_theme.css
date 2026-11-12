@@ -484,3 +484,50 @@ header .navbar-brand img {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
   transform: scale(1.03);
 }
+
+/* ===== MTX HOVER FIX: readable text + bg on every hover ===== */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu a:hover,
+.awesomplete ul li:hover,
+.awesomplete ul li[aria-selected="true"],
+.sidebar-item-container:hover,
+.standard-sidebar-item:hover,
+.list-row:hover,
+.list-row-container:hover,
+.result-row:hover,
+.grid-row:hover,
+.form-grid .grid-row:hover,
+table tbody tr:hover,
+table tbody tr:hover td {
+  background-color: #e3e8ff !important;
+  color: #1b1f3b !important;
+}
+
+.dropdown-menu .dropdown-item:hover *,
+.dropdown-menu a:hover *,
+.awesomplete ul li:hover *,
+.awesomplete ul li[aria-selected="true"] *,
+.sidebar-item-container:hover *,
+.standard-sidebar-item:hover *,
+.list-row:hover *,
+.list-row-container:hover *,
+.result-row:hover *,
+.grid-row:hover *,
+table tbody tr:hover td * {
+  color: #1b1f3b !important;
+  --text-color: #1b1f3b;
+  --icon-stroke: #1b1f3b;
+}
+
+.list-row:hover .indicator-pill,
+.list-row:hover .indicator-pill * { color: inherit !important; }
+
+.btn-default:hover,
+.btn-secondary:hover,
+.page-actions .btn:hover {
+  background-color: #dfe5ff !important;
+  color: #1b1f3b !important;
+  border-color: #aab4ff !important;
+}
+/* ===== END MTX HOVER FIX ===== */
