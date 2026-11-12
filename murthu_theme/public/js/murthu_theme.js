@@ -810,51 +810,32 @@
 
 
 
-/* ===== MTX LOGO v6: bigger, no glow, taller header with bottom padding ===== */
-(function () {
-  function styleLogo(img) {
-    img.style.setProperty("height", "76px", "important");
-    img.style.setProperty("width", "300px", "important");
-    img.style.setProperty("min-width", "300px", "important");
-    img.style.setProperty("max-width", "none", "important");
-    img.style.setProperty("max-height", "none", "important");
-    img.style.setProperty("margin", "10px 0 10px 28px", "important");
-    img.style.setProperty("padding", "0", "important");
-    img.style.setProperty("box-sizing", "border-box", "important");
-    img.style.setProperty("background", "transparent", "important");
-    img.style.setProperty("border-radius", "0", "important");
-    img.style.setProperty("box-shadow", "none", "important");
-    img.style.setProperty("object-fit", "contain", "important");
-    img.style.setProperty("object-position", "left center", "important");
-    img.style.setProperty("filter", "brightness(1.15) saturate(1.3)", "important");
 
-    var p = img.parentElement;
-    for (var d = 0; d < 6 && p && p !== document.body; d++, p = p.parentElement) {
-      var pr = p.getBoundingClientRect();
-      p.style.setProperty("overflow", "visible", "important");
-      if (pr.width >= window.innerWidth * 0.9 && pr.top < 20) {
-        // this is the full-width header bar
-        p.style.setProperty("height", "96px", "important");
-        p.style.setProperty("min-height", "96px", "important");
-        p.style.setProperty("padding-bottom", "10px", "important");
-        p.style.setProperty("align-items", "center", "important");
-        break;
-      } else {
-        p.style.setProperty("width", "auto", "important");
-        p.style.setProperty("max-width", "none", "important");
-        p.style.setProperty("flex", "none", "important");
+/* ===== MTX LOGO v8: class only, sizes come from CSS media queries ===== */
+(function () {
+  var queued = false;
+  function mark() {
+    queued = false;
+    var cur = document.querySelector("img.mtx-logo");
+    if (cur && cur.isConnected) return;               // cheap exit, observer stays alive for re-renders
+    var imgs = document.querySelectorAll(".navbar img, header img");
+    for (var i = 0; i < imgs.length; i++) {
+      var r = imgs[i].getBoundingClientRect();
+      if (r.top < 140 && r.left < 400 && r.width > 0) {
+        var img = imgs[i];
+        img.classList.add("mtx-logo");
+        var p = img.parentElement;
+        for (var d = 0; d < 6 && p && p !== document.body; d++, p = p.parentElement) {
+          var pr = p.getBoundingClientRect();
+          if (pr.width >= window.innerWidth * 0.9 && pr.top < 20) { p.classList.add("mtx-header"); break; }
+          p.classList.add("mtx-logo-wrap");
+        }
+        return;
       }
     }
   }
-  function run() {
-    var imgs = document.querySelectorAll("img");
-    for (var n = 0; n < imgs.length; n++) {
-      var r = imgs[n].getBoundingClientRect();
-      if (r.top < 110 && r.left < 340 && r.width > 0) { styleLogo(imgs[n]); }
-    }
-  }
-  window.addEventListener("load", function () {
-    [300, 1000, 2000, 3500].forEach(function (t) { setTimeout(run, t); });
-  });
-  new MutationObserver(run).observe(document.documentElement, { childList: true, subtree: true });
+  function schedule() { if (!queued) { queued = true; requestAnimationFrame(mark); } }
+  new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
+  window.addEventListener("load", schedule);
+  window.addEventListener("resize", schedule);
 })();

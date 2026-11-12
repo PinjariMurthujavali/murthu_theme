@@ -452,39 +452,6 @@ html body > canvas:not(#mtx-bg):not(#mtx-fx) {
   pointer-events: none !important;
 }
 
-/* ===== MTX LOGO: bigger + bright ===== */
-.navbar .navbar-brand,
-.navbar .navbar-home,
-header .navbar-brand {
-  display: flex !important;
-  align-items: center !important;
-  margin-right: 16px !important;
-}
-
-.navbar .navbar-brand img,
-.navbar .navbar-home img,
-.navbar .app-logo,
-header .navbar-brand img {
-  width: 150px !important;
-  max-width: 150px !important;
-  height: auto !important;
-  max-height: 44px !important;
-  object-fit: contain !important;
-  background: rgba(255, 255, 255, 0.96) !important;
-  padding: 4px 10px !important;
-  border-radius: 10px !important;
-  filter: brightness(1.15) contrast(1.1) !important;
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.35) !important;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.navbar .navbar-brand img:hover,
-.navbar .navbar-home img:hover,
-.navbar .app-logo:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
-  transform: scale(1.03);
-}
-
 /* ===== MTX HOVER FIX: readable text + bg on every hover ===== */
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
@@ -531,3 +498,36 @@ table tbody tr:hover td * {
   border-color: #aab4ff !important;
 }
 /* ===== END MTX HOVER FIX ===== */
+
+/* ===== MTX RESPONSIVE: logo + search + profile ===== */
+:root { --mtx-h: 96px; --mtx-logo-w: 300px; --mtx-logo-h: 76px; --mtx-search-w: 360px; }
+
+img.mtx-logo {
+  width: var(--mtx-logo-w) !important; min-width: 0 !important; max-width: 42vw !important;
+  height: var(--mtx-logo-h) !important; max-height: none !important;
+  margin: 10px 0 10px clamp(8px, 2vw, 28px) !important; padding: 0 !important;
+  background: transparent !important; box-shadow: none !important; border-radius: 0 !important;
+  object-fit: contain !important; object-position: left center !important;
+  filter: brightness(1.15) saturate(1.3) !important;
+}
+.mtx-header { height: var(--mtx-h) !important; min-height: var(--mtx-h) !important; align-items: center !important; overflow: visible !important; }
+.mtx-header .mtx-logo-wrap { width: auto !important; max-width: none !important; flex: none !important; overflow: visible !important; }
+
+/* search bar */
+.mtx-header .search-bar, .mtx-header .search-bar .awesomplete, .mtx-header .search-bar input {
+  max-width: var(--mtx-search-w);
+}
+/* profile / bell */
+.mtx-header .navbar-right, .mtx-header .navbar-nav { flex-shrink: 0 !important; align-items: center; }
+
+@media (max-width: 1399px) { :root { --mtx-logo-w: 260px; --mtx-logo-h: 66px; --mtx-h: 86px; --mtx-search-w: 320px; } }
+@media (max-width: 1199px) { :root { --mtx-logo-w: 220px; --mtx-logo-h: 58px; --mtx-h: 76px; --mtx-search-w: 280px; } }
+@media (max-width: 991px)  { :root { --mtx-logo-w: 180px; --mtx-logo-h: 48px; --mtx-h: 64px; --mtx-search-w: 220px; } }
+@media (max-width: 767px)  {
+  :root { --mtx-logo-w: 140px; --mtx-logo-h: 40px; --mtx-h: 56px; --mtx-search-w: 150px; }
+  img.mtx-logo { margin-top: 6px !important; margin-bottom: 6px !important; }
+  .mtx-header .search-bar kbd, .mtx-header .search-bar .text-muted { display: none !important; }
+}
+@media (max-width: 479px)  { :root { --mtx-logo-w: 110px; --mtx-logo-h: 34px; --mtx-h: 52px; --mtx-search-w: 100px; } }
+@media (max-height: 500px) and (orientation: landscape) { :root { --mtx-h: 52px; --mtx-logo-h: 34px; --mtx-logo-w: 120px; } }
+/* ===== END MTX RESPONSIVE ===== */
