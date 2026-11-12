@@ -1,5 +1,5 @@
 app_name = "murthu_theme"
-app_title = "Murthu Theme"
+app_title = "Brilliant Theme"
 app_publisher = "Murthu"
 app_description = "Murthu Desktop Theme"
 app_email = "murthu@example.com"
