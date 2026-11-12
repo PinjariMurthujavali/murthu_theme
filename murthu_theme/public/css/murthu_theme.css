@@ -451,3 +451,36 @@ html body > canvas:not(#mtx-bg):not(#mtx-fx) {
   width: 100vw !important; height: 100vh !important;
   pointer-events: none !important;
 }
+
+/* ===== MTX LOGO: bigger + bright ===== */
+.navbar .navbar-brand,
+.navbar .navbar-home,
+header .navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 16px !important;
+}
+
+.navbar .navbar-brand img,
+.navbar .navbar-home img,
+.navbar .app-logo,
+header .navbar-brand img {
+  width: 150px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  max-height: 44px !important;
+  object-fit: contain !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  padding: 4px 10px !important;
+  border-radius: 10px !important;
+  filter: brightness(1.15) contrast(1.1) !important;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.35) !important;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.navbar .navbar-brand img:hover,
+.navbar .navbar-home img:hover,
+.navbar .app-logo:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
+  transform: scale(1.03);
+}
